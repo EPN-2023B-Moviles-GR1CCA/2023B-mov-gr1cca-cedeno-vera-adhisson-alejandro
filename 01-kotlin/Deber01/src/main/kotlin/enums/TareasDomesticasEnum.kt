@@ -1,6 +1,6 @@
 package enums
 
-enum class TareasDomesticas {
+enum class TareasDomesticasEnum {
     LAVAR_PLATOS,
     LAVAR_ROPA,
     LIMPIAR_CASA,

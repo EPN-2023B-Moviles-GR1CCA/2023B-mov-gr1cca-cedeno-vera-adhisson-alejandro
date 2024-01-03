@@ -1,6 +1,4 @@
 import managers.CRUDPersona
-import entidades.Persona
-import enums.TareasDomesticas
 
 
 fun main() {
@@ -35,9 +33,9 @@ fun menuTareaDomestica() {
 fun menuPersonas() {
     val crudManager = CRUDPersona()
     var opcionPersonas = 0
-    limpiarConsola()
 
     do {
+        limpiarConsola()
         println("============= Bienvenido al menu de Personas =============")
         println("1. Crear Persona")
         println("2. Leer todas las Personas")
@@ -53,7 +51,7 @@ fun menuPersonas() {
                 val nombre = readlnOrNull() ?: ""
                 println("Ingrese la fecha de nacimiento de la persona (dd/mm/aaaa)")
                 val fechaNacimiento = readlnOrNull() ?: ""
-                crudManager.crearPersona(Persona(nombre, fechaNacimiento))
+                crudManager.crearPersona(nombre, fechaNacimiento)
             }
 
             2 -> {

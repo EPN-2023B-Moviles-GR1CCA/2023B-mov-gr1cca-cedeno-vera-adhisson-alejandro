@@ -1,7 +1,9 @@
 package entidades
 
-data class TareasDomesticas(
-    val nombreTarea: String,
+import enums.TareasDomesticasEnum
+
+data class TareaDomestica(
+    val nombreTarea: TareasDomesticasEnum,
     val descripcion: String,
     val fechaCreacion: String,
     val duracionEstimada: Int,
