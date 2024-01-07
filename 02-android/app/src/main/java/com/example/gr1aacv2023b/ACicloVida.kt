@@ -8,7 +8,7 @@ class ACicloVida : AppCompatActivity() {
 
     var textoGLobal = ""
 
-    fun mostrarSnackbar(texto: String){
+    fun mostrarSnackbar(texto: String) {
         textoGLobal += " $texto"
         Snackbar
             .make(
@@ -18,6 +18,7 @@ class ACicloVida : AppCompatActivity() {
             )
             .show()
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_aciclo_vida)
@@ -54,5 +55,24 @@ class ACicloVida : AppCompatActivity() {
         mostrarSnackbar("onDestroy")
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.run {
+            //guardar datos primitivos
+            putString("textoGuardado", textoGLobal) //clave, valor
+        }
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        // recuperar las variables primitivas
+        val textoRecuperado: String? = savedInstanceState
+            .getString("textoGuardado") //clave
+
+        if (textoRecuperado != null) {
+            textoGLobal = textoRecuperado
+            mostrarSnackbar(textoRecuperado)
+        }
+    }
 
 }
