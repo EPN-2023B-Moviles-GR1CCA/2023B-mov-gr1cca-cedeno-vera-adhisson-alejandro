@@ -1,3 +1,2 @@
-1;Lavar Ropa;xd;04/01/2024;false
-1;Vacilar;;;false
 2;Lavar Platos;Y las ollas;04/01/2024;true
+3;Barrer;Barrer el patio y la sala;04/01/2024;false

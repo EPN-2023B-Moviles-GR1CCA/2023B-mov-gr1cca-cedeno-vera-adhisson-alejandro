@@ -9,7 +9,7 @@ class ACicloVida : AppCompatActivity() {
     var textoGLobal = ""
 
     fun mostrarSnackbar(texto: String){
-        textoGLobal +=  "texto"
+        textoGLobal += " $texto"
         Snackbar
             .make(
                 findViewById(R.id.cl_ciclo_vida), //view
