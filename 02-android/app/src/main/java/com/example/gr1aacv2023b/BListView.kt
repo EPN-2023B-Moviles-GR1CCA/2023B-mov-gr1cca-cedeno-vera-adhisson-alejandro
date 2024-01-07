@@ -1,13 +1,17 @@
 package com.example.gr1aacv2023b
 
+import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.ContextMenu
+import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.ListView
+import androidx.appcompat.app.AlertDialog
+import com.google.android.material.snackbar.Snackbar
 
 class BListView : AppCompatActivity() {
 
@@ -65,6 +69,64 @@ class BListView : AppCompatActivity() {
         val posicion = info.position
         posicionItemSeleccionado = posicion
 
+    }
+
+    fun mostrarSnackbar(texto: String) {
+        Snackbar
+            .make(
+                findViewById(R.id.lv_list_view), // Donde va a aparecer
+                texto, // El texto que va a aparecer
+                Snackbar.LENGTH_LONG // Duración
+            )
+            .show()
+    }
+
+    override fun onContextItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.mi_editar -> {
+                mostrarSnackbar("${posicionItemSeleccionado}")
+                return true
+            }
+
+            R.id.mi_eliminar -> {
+                mostrarSnackbar("${posicionItemSeleccionado}")
+                return true
+            }
+
+            else -> super.onContextItemSelected(item)
+        }
+    }
+
+    fun abrirDialogo() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Desea Eliminar?")
+        builder.setPositiveButton(
+            "Aceptar",
+            DialogInterface.OnClickListener { dialog, which ->
+                mostrarSnackbar("Eliminar Aceptado")
+            })
+        builder.setNegativeButton(
+            "Cancelar",
+            null
+        )
+
+        val opciones = resources.getStringArray(R.array.string_array_opciones_dialogo)
+
+        val seleccionPrevia = booleanArrayOf(
+            false, // false -> no esta seleccionado
+            true, // true -> esta seleccionado
+            false
+        )
+        builder.setMultiChoiceItems(
+            opciones,
+            seleccionPrevia
+        ) { dialog,
+            which,
+            isChecked ->
+            mostrarSnackbar("Dio click en el item $which")
+        }
+        val dialogo = builder.create()
+        dialogo.show()
     }
 
 }
