@@ -89,6 +89,7 @@ class BListView : AppCompatActivity() {
             }
 
             R.id.mi_eliminar -> {
+                abrirDialogo()
                 mostrarSnackbar("${posicionItemSeleccionado}")
                 return true
             }
