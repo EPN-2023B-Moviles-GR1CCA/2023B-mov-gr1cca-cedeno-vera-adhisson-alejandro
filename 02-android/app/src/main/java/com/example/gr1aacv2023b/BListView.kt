@@ -63,7 +63,7 @@ class BListView : AppCompatActivity() {
         super.onCreateContextMenu(menu, v, menuInfo)
         // llena el menu contextual
         val inflater = menuInflater
-//        inflater.inflate(R.menu.menu, menu)
+        inflater.inflate(R.menu.menu, menu)
         // obtenemos el id del arraylist seleccionado
         val info = menuInfo as AdapterView.AdapterContextMenuInfo
         val posicion = info.position
