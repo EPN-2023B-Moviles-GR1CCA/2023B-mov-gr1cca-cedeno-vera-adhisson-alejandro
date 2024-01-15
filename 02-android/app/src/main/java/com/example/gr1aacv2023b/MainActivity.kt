@@ -58,6 +58,12 @@ class MainActivity : AppCompatActivity() {
                 irActividad(ECrudEntrenador::class.java)
             }
 
+        val botonRView = findViewById<Button>(R.id.btn_recycler_view)
+        botonRView
+            .setOnClickListener {
+                irActividad(FRecyclerView::class.java)
+            }
+
     } // Fin onCreate
 
     fun abrirActividadConParametros(
@@ -71,7 +77,7 @@ class MainActivity : AppCompatActivity() {
         callbackContenidoIntentExplicito.launch(intentExplicito)
     }
 
-    fun irActividad(
+    fun irActividad( // me va a servir para ir a otra actividad
         clase: Class<*>
     ) {
         val intentExplicito = Intent(
