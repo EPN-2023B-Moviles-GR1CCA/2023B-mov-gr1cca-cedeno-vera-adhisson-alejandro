@@ -2,4 +2,15 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="transparent">#00000000</color>
+    <color name="semi_transparent">#80000000</color>
+    <color name="grey">#FF808080</color>
+    <color name="DARK_PRIMARY_COLOR">#303F9F</color>
+    <color name="LIGHT_PRIMARY_COLOR">#C5CAE9</color>
+    <color name="PRIMARY_COLOR">#3F51B5</color>
+    <color name="TEXT_ICONS">#FFFFFF</color>
+    <color name="ACCENT_COLOR">#FFC107</color>
+    <color name="PRIMARY_TEXT">#212121</color>
+    <color name="SECONDARY_TEXT">#727272</color>
+    <color name="DIVIDER_COLOR">#B6B6B6</color>
 </resources>
