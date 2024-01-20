@@ -6,12 +6,16 @@ import android.os.Bundle
 import android.widget.Button
 import com.example.examen_ib_aacv.app.PersonaActivity
 import com.example.examen_ib_aacv.app.TareaActivity
+import com.example.examen_ib_aacv.data.BaseDeDatos
+import com.example.examen_ib_aacv.data.BaseDeDatosHelper
 import com.example.examen_ib_aacv.layout.MyToolbar
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        BaseDeDatos.tablasBDD = BaseDeDatosHelper(this)
 
         MyToolbar().show(this, "Examen IB", false)
 
