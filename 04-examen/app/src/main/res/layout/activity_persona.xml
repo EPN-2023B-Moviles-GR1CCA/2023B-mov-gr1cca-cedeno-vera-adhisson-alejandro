@@ -21,4 +21,32 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+<!--    <com.getbase.floatingactionbutton.FloatingActionsMenu-->
+<!--        android:id="@+id/fam_personas"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.952"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/include"-->
+<!--        app:layout_constraintVertical_bias="0.959"-->
+<!--        app:fab_icon="@drawable/baseline_auto_awesome_24"-->
+<!--        app:fab_addButtonColorNormal="@color/DARK_PRIMARY_COLOR"-->
+<!--        app:fab_addButtonColorPressed="@color/DARK_PRIMARY_COLOR">-->
+
+    <com.getbase.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_crear_persona"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        app:fab_colorNormal="@color/ACCENT_COLOR"
+        app:fab_icon="@drawable/baseline_add_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+    <!--    </com.getbase.floatingactionbutton.FloatingActionsMenu>-->
+
 </androidx.constraintlayout.widget.ConstraintLayout>
