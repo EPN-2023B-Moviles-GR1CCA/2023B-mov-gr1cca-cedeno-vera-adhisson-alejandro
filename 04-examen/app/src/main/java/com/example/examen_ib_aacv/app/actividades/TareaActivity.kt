@@ -8,10 +8,11 @@ import com.example.examen_ib_aacv.app.fragmentos.CrearTareaFragment
 import com.example.examen_ib_aacv.R
 import com.example.examen_ib_aacv.data.bdd.BaseDeDatosHelper
 import com.example.examen_ib_aacv.app.adaptadores.TareaAdaptador
+import com.example.examen_ib_aacv.app.interfaces.OnDataChangeListener
 import com.example.examen_ib_aacv.layout.MyToolbar
 import com.getbase.floatingactionbutton.FloatingActionButton
 
-class TareaActivity : AppCompatActivity() {
+class TareaActivity : AppCompatActivity(), OnDataChangeListener {
 
     lateinit var adaptador: TareaAdaptador
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,7 +29,6 @@ class TareaActivity : AppCompatActivity() {
                 .replace(android.R.id.content, fragment)
                 .addToBackStack(null)
                 .commit()
-            actualizarRecyclerView()
 
         }
 
@@ -42,10 +42,11 @@ class TareaActivity : AppCompatActivity() {
 
     }
 
-    fun actualizarRecyclerView() {
+    override fun onDataChange() {
         val baseDeDatosHelper = BaseDeDatosHelper(this)
         val listaTareas = baseDeDatosHelper.obtenerTareas()
-        adaptador = TareaAdaptador(listaTareas)
+        adaptador.actualizarDatos(listaTareas)
         adaptador.notifyDataSetChanged()
     }
+
 }

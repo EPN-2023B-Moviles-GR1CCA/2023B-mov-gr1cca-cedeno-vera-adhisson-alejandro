@@ -19,14 +19,14 @@ class BaseDeDatosHelper(
         val crearTablaPersona = """
             CREATE TABLE PERSONA(
                 id_persona INTEGER PRIMARY KEY AUTOINCREMENT,
-                nombre_persona VARCHAR(50)
+                nombre_persona VARCHAR(50) NOT NULL
             );
         """.trimIndent()
         val crearTablaTarea = """
             CREATE TABLE TAREA(
                 id_tarea INTEGER PRIMARY KEY AUTOINCREMENT,
-                id_Persona INTEGER,
-                nombre_tarea VARCHAR(50),
+                id_Persona INTEGER NOT NULL,
+                nombre_tarea VARCHAR(50) NOT NULL,
                 descripcion_tarea TEXT,
                 FOREIGN KEY(id_Persona) REFERENCES PERSONA(id_persona)
             );

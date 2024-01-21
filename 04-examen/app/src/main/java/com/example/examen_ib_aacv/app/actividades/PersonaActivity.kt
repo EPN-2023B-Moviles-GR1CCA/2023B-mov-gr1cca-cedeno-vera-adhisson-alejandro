@@ -8,11 +8,12 @@ import com.example.examen_ib_aacv.app.fragmentos.CrearPersonaFragment
 import com.example.examen_ib_aacv.R
 import com.example.examen_ib_aacv.data.bdd.BaseDeDatosHelper
 import com.example.examen_ib_aacv.app.adaptadores.PersonaAdaptador
+import com.example.examen_ib_aacv.app.interfaces.OnDataChangeListener
 import com.example.examen_ib_aacv.layout.MyToolbar
 import com.getbase.floatingactionbutton.FloatingActionButton
 
 
-class PersonaActivity : AppCompatActivity() {
+class PersonaActivity : AppCompatActivity(), OnDataChangeListener {
 
     lateinit var adaptador: PersonaAdaptador
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,8 +31,6 @@ class PersonaActivity : AppCompatActivity() {
                 .addToBackStack(null)
                 .commit()
 
-            // Actualiza el RecyclerView
-            actualizarRecyclerView()
         }
 
         val baseDeDatosHelper = BaseDeDatosHelper(this)
@@ -44,10 +43,10 @@ class PersonaActivity : AppCompatActivity() {
 
     }
 
-    fun actualizarRecyclerView() { // no se actualiza pero le dejo ahi por si acaso xd
+    override fun onDataChange() {
         val baseDeDatosHelper = BaseDeDatosHelper(this)
         val listaPersonas = baseDeDatosHelper.obtenerPersonas()
-        adaptador = PersonaAdaptador(listaPersonas)
+        adaptador.actualizarDatos(listaPersonas)
         adaptador.notifyDataSetChanged()
     }
 

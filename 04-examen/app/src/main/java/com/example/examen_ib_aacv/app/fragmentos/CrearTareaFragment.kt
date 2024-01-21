@@ -9,6 +9,7 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.fragment.app.DialogFragment
 import com.example.examen_ib_aacv.R
+import com.example.examen_ib_aacv.app.interfaces.OnDataChangeListener
 import com.example.examen_ib_aacv.data.bdd.BaseDeDatos
 import com.google.android.material.snackbar.Snackbar
 
@@ -82,8 +83,9 @@ class CrearTareaFragment : DialogFragment() {
                         descripcionTarea.text.toString(),
                     )
                 if (respuesta) mostrarSnackbar("Se creo la tarea")
-
             }
+            (activity as OnDataChangeListener).onDataChange()
+            dismiss()
 
 
         }
@@ -93,7 +95,7 @@ class CrearTareaFragment : DialogFragment() {
     fun mostrarSnackbar(texto: String) {
         Snackbar
             .make(
-                requireView(), // Parent view
+                activity?.findViewById(android.R.id.content) ?: return, // Parent view
                 texto, //texto
                 Snackbar.LENGTH_LONG //tiempo
             )

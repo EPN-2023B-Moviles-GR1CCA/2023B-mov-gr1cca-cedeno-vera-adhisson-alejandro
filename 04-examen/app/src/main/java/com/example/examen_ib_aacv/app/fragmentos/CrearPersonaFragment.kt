@@ -8,6 +8,8 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.fragment.app.DialogFragment
 import com.example.examen_ib_aacv.R
+import com.example.examen_ib_aacv.app.adaptadores.PersonaAdaptador
+import com.example.examen_ib_aacv.app.interfaces.OnDataChangeListener
 import com.example.examen_ib_aacv.data.bdd.BaseDeDatos
 import com.google.android.material.snackbar.Snackbar
 
@@ -15,6 +17,7 @@ class CrearPersonaFragment : DialogFragment {
 
     constructor() : super()
 
+    lateinit var adaptador: PersonaAdaptador
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -73,6 +76,10 @@ class CrearPersonaFragment : DialogFragment {
                     .tablasBDD!!.crearPersona(nombre.text.toString())
                 if (respuesta) mostrarSnackbar("Se creó la persona")
             }
+            // Actualiza el RecyclerView
+            (activity as OnDataChangeListener).onDataChange()
+            dismiss()
+
         }
 
     }
@@ -80,7 +87,8 @@ class CrearPersonaFragment : DialogFragment {
     fun mostrarSnackbar(texto: String) {
         Snackbar
             .make(
-                requireView(), // Parent view
+//                requireView(), // Parent view
+                activity?.findViewById(android.R.id.content) ?: return, // Parent view
                 texto, //texto
                 Snackbar.LENGTH_LONG //tiempo
             )

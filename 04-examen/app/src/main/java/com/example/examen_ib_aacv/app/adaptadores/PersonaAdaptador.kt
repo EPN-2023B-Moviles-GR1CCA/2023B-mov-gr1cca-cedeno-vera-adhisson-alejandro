@@ -11,11 +11,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.examen_ib_aacv.app.fragmentos.CrearPersonaFragment
 import com.example.examen_ib_aacv.R
 import com.example.examen_ib_aacv.app.actividades.PersonaActivity
+import com.example.examen_ib_aacv.app.interfaces.OnDataChangeListener
 import com.example.examen_ib_aacv.data.bdd.BaseDeDatos
 import com.example.examen_ib_aacv.data.entidades.Persona
 
 
-class PersonaAdaptador(private val listaPersonas: List<Persona>) :
+class PersonaAdaptador(private var listaPersonas: List<Persona>) :
     RecyclerView.Adapter<PersonaAdaptador.PersonaViewHolder>() {
 
     // En tu adaptador
@@ -64,7 +65,8 @@ class PersonaAdaptador(private val listaPersonas: List<Persona>) :
                 builder.setMessage("¿Está seguro que desea eliminar a ${nombre.text}?")
                 builder.setPositiveButton("Aceptar") { dialog, which ->
                     BaseDeDatos.tablasBDD!!.eliminarPersona(id.text.toString().toInt())
-//                    (itemView.context as PersonaActivity).actualizarRecyclerView()
+                    (itemView.context as OnDataChangeListener).onDataChange() // notifica al adaptador que se ha eliminado un elemento
+
                 }
                 builder.setNegativeButton("Cancelar", null)
                 val dialog: AlertDialog = builder.create()
@@ -113,5 +115,7 @@ class PersonaAdaptador(private val listaPersonas: List<Persona>) :
 
     override fun getItemCount() = listaPersonas.size
 
-
+    fun actualizarDatos(listaPersonas: List<Persona>) {
+        this.listaPersonas = listaPersonas
+    }
 }

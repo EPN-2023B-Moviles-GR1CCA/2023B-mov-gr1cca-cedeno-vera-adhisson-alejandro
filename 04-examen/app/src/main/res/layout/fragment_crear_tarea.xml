@@ -83,6 +83,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="48dp"
                         android:hint="Id Persona"
+                        android:inputType="number"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 

@@ -12,9 +12,10 @@ import com.example.examen_ib_aacv.app.fragmentos.CrearTareaFragment
 import com.example.examen_ib_aacv.R
 import com.example.examen_ib_aacv.app.actividades.TareaActivity
 import com.example.examen_ib_aacv.data.bdd.BaseDeDatos
+import com.example.examen_ib_aacv.data.entidades.Persona
 import com.example.examen_ib_aacv.data.entidades.Tarea
 
-class TareaAdaptador(private val listaTareas: List<Tarea>) :
+class TareaAdaptador(private var listaTareas: List<Tarea>) :
     RecyclerView.Adapter<TareaAdaptador.TareaViewHolder>() {
 
     class TareaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
@@ -78,7 +79,7 @@ class TareaAdaptador(private val listaTareas: List<Tarea>) :
         }
 
         fun editarTarea() {
-//            try {
+            try {
                 val fragmento = CrearTareaFragment()
                 val activity = itemView.context as TareaActivity
                 val bundle = Bundle()
@@ -88,10 +89,10 @@ class TareaAdaptador(private val listaTareas: List<Tarea>) :
                 bundle.putString("descripcionTarea", descripcion.text.toString())
                 fragmento.arguments = bundle
                 fragmento.show(activity.supportFragmentManager, "Editar Tarea")
-//            } catch (e: Exception) {
-//                mostrarSnackbar("Se produjo un error al editar la tarea ${idTarea.text}")
-//                println(e.message)
-//            }
+            } catch (e: Exception) {
+                mostrarSnackbar("Se produjo un error al editar la tarea ${idTarea.text}")
+                println(e.message)
+            }
         }
 
         fun mostrarSnackbar(texto: String) {
@@ -121,6 +122,10 @@ class TareaAdaptador(private val listaTareas: List<Tarea>) :
         holder.descripcion.text = tarea.descripcion
         holder.idPersona.text = tarea.idPersona.toString()
         holder.idTarea.text = tarea.id.toString()
+    }
+
+    fun actualizarDatos(listaTareas: List<Tarea>) {
+        this.listaTareas = listaTareas
     }
 
 
