@@ -13,6 +13,8 @@ import com.getbase.floatingactionbutton.FloatingActionButton
 
 
 class PersonaActivity : AppCompatActivity() {
+
+    lateinit var adaptador: PersonaAdaptador
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_persona)
@@ -27,15 +29,26 @@ class PersonaActivity : AppCompatActivity() {
                 .replace(android.R.id.content, fragment)
                 .addToBackStack(null)
                 .commit()
+
+            // Actualiza el RecyclerView
+            actualizarRecyclerView()
         }
 
         val baseDeDatosHelper = BaseDeDatosHelper(this)
         val listaPersonas = baseDeDatosHelper.obtenerPersonas()
-        val adaptador = PersonaAdaptador(listaPersonas)
+        adaptador = PersonaAdaptador(listaPersonas)
 
         val rvPersonas: RecyclerView = findViewById(R.id.rv_personas)
         rvPersonas.layoutManager = LinearLayoutManager(this)
         rvPersonas.adapter = adaptador
 
     }
+
+    fun actualizarRecyclerView() { // no se actualiza pero le dejo ahi por si acaso xd
+        val baseDeDatosHelper = BaseDeDatosHelper(this)
+        val listaPersonas = baseDeDatosHelper.obtenerPersonas()
+        adaptador = PersonaAdaptador(listaPersonas)
+        adaptador.notifyDataSetChanged()
+    }
+
 }

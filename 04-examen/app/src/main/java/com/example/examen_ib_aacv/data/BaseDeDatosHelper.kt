@@ -72,15 +72,32 @@ class BaseDeDatosHelper(
         val resultadoLectura = conexionLectura.rawQuery("SELECT * FROM PERSONA", null)
         if (resultadoLectura.moveToFirst()) {
             do {
-                val id = resultadoLectura.getInt(resultadoLectura.getColumnIndex("id_persona"))
-                val nombre =
-                    resultadoLectura.getString(resultadoLectura.getColumnIndex("nombre_persona"))
-                listaPersonas.add(Persona(id, nombre))
+                val id = resultadoLectura.getInt(0) // Columna 0 -> ID
+                val nombre = resultadoLectura.getString(1) // Columna 1 -> NOMBRE
+                val persona = Persona(id, nombre)
+                listaPersonas.add(persona)
             } while (resultadoLectura.moveToNext())
         }
         resultadoLectura.close()
         conexionLectura.close()
         return listaPersonas
+    }
+
+    fun actualizarNombrePersona(id: Int, nuevoNombre: String): Boolean {
+        val conexionEscritura = writableDatabase
+        val valoresAActualizar = ContentValues()
+        valoresAActualizar.put("nombre_persona", nuevoNombre)
+        val resultadoActualizacion = conexionEscritura
+            .update(
+                "PERSONA",
+                valoresAActualizar,
+                "id_persona=?",
+                arrayOf(
+                    id.toString()
+                )
+            )
+        conexionEscritura.close()
+        return resultadoActualizacion.toInt() != -1
     }
 
 

@@ -1,5 +1,6 @@
 package com.example.examen_ib_aacv.data
 
+import android.os.Bundle
 import android.view.ContextMenu
 import android.view.LayoutInflater
 import android.view.View
@@ -7,8 +8,12 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
+import com.example.examen_ib_aacv.CrearPersonaFragment
 import com.example.examen_ib_aacv.R
+import com.example.examen_ib_aacv.app.PersonaActivity
 import com.example.examen_ib_aacv.data.entidades.Persona
+import com.getbase.floatingactionbutton.FloatingActionButton
+
 
 class PersonaAdaptador(private val listaPersonas: List<Persona>) :
     RecyclerView.Adapter<PersonaAdaptador.PersonaViewHolder>() {
@@ -36,6 +41,7 @@ class PersonaAdaptador(private val listaPersonas: List<Persona>) :
                 "Editar"
             )
             editarItem.setOnMenuItemClickListener {
+                editarPersona()
                 true
             }
 
@@ -58,6 +64,7 @@ class PersonaAdaptador(private val listaPersonas: List<Persona>) :
                 builder.setMessage("¿Está seguro que desea eliminar a ${nombre.text}?")
                 builder.setPositiveButton("Aceptar") { dialog, which ->
                     BaseDeDatos.tablasBDD!!.eliminarPersona(id.text.toString().toInt())
+//                    (itemView.context as PersonaActivity).actualizarRecyclerView()
                 }
                 builder.setNegativeButton("Cancelar", null)
                 val dialog: AlertDialog = builder.create()
@@ -79,6 +86,16 @@ class PersonaAdaptador(private val listaPersonas: List<Persona>) :
                 .show()
         }
 
+
+        fun editarPersona() {
+            val fragmento = CrearPersonaFragment()
+            val activity = itemView.context as PersonaActivity
+            val bundle = Bundle()
+            bundle.putInt("id", id.text.toString().toInt())
+            bundle.putString("nombrePersona", nombre.text.toString())
+            fragmento.arguments = bundle
+            fragmento.show(activity.supportFragmentManager, "Editar Persona")
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PersonaViewHolder {
