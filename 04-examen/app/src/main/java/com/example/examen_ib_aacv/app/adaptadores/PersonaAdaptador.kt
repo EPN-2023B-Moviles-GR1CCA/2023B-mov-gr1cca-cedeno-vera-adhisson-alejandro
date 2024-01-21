@@ -1,4 +1,4 @@
-package com.example.examen_ib_aacv.data
+package com.example.examen_ib_aacv.app.adaptadores
 
 import android.os.Bundle
 import android.view.ContextMenu
@@ -8,9 +8,10 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
-import com.example.examen_ib_aacv.CrearPersonaFragment
+import com.example.examen_ib_aacv.app.fragmentos.CrearPersonaFragment
 import com.example.examen_ib_aacv.R
-import com.example.examen_ib_aacv.app.PersonaActivity
+import com.example.examen_ib_aacv.app.actividades.PersonaActivity
+import com.example.examen_ib_aacv.data.bdd.BaseDeDatos
 import com.example.examen_ib_aacv.data.entidades.Persona
 
 

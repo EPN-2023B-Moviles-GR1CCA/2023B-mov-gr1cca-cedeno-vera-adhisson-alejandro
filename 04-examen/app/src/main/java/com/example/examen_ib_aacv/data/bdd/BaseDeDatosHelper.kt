@@ -1,4 +1,4 @@
-package com.example.examen_ib_aacv.data
+package com.example.examen_ib_aacv.data.bdd
 
 import android.content.ContentValues
 import android.content.Context

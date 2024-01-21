@@ -1,13 +1,13 @@
-package com.example.examen_ib_aacv.app
+package com.example.examen_ib_aacv.app.actividades
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.examen_ib_aacv.CrearPersonaFragment
+import com.example.examen_ib_aacv.app.fragmentos.CrearPersonaFragment
 import com.example.examen_ib_aacv.R
-import com.example.examen_ib_aacv.data.BaseDeDatosHelper
-import com.example.examen_ib_aacv.data.PersonaAdaptador
+import com.example.examen_ib_aacv.data.bdd.BaseDeDatosHelper
+import com.example.examen_ib_aacv.app.adaptadores.PersonaAdaptador
 import com.example.examen_ib_aacv.layout.MyToolbar
 import com.getbase.floatingactionbutton.FloatingActionButton
 

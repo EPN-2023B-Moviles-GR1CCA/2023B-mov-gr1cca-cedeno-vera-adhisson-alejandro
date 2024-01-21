@@ -14,11 +14,11 @@
         android:enableOnBackInvokedCallback="true"
         tools:targetApi="31">
         <activity
-            android:name=".app.PersonaActivity"
+            android:name=".app.actividades.PersonaActivity"
             android:exported="false"
             android:parentActivityName=".MainActivity" />
         <activity
-            android:name=".app.TareaActivity"
+            android:name=".app.actividades.TareaActivity"
             android:exported="false"
             android:parentActivityName=".MainActivity" />
         <activity

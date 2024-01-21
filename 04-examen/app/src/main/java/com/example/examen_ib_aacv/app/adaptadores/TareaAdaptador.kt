@@ -1,4 +1,4 @@
-package com.example.examen_ib_aacv.data
+package com.example.examen_ib_aacv.app.adaptadores
 
 import android.app.AlertDialog
 import android.os.Bundle
@@ -8,9 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.examen_ib_aacv.CrearTareaFragment
+import com.example.examen_ib_aacv.app.fragmentos.CrearTareaFragment
 import com.example.examen_ib_aacv.R
-import com.example.examen_ib_aacv.app.TareaActivity
+import com.example.examen_ib_aacv.app.actividades.TareaActivity
+import com.example.examen_ib_aacv.data.bdd.BaseDeDatos
 import com.example.examen_ib_aacv.data.entidades.Tarea
 
 class TareaAdaptador(private val listaTareas: List<Tarea>) :

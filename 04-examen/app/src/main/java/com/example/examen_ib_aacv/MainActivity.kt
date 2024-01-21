@@ -4,10 +4,10 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
-import com.example.examen_ib_aacv.app.PersonaActivity
-import com.example.examen_ib_aacv.app.TareaActivity
-import com.example.examen_ib_aacv.data.BaseDeDatos
-import com.example.examen_ib_aacv.data.BaseDeDatosHelper
+import com.example.examen_ib_aacv.app.actividades.PersonaActivity
+import com.example.examen_ib_aacv.app.actividades.TareaActivity
+import com.example.examen_ib_aacv.data.bdd.BaseDeDatos
+import com.example.examen_ib_aacv.data.bdd.BaseDeDatosHelper
 import com.example.examen_ib_aacv.layout.MyToolbar
 
 class MainActivity : AppCompatActivity() {
