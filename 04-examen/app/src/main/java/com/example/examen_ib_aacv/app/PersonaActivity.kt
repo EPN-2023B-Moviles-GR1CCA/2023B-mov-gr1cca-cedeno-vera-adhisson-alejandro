@@ -31,7 +31,6 @@ class PersonaActivity : AppCompatActivity() {
 
         val baseDeDatosHelper = BaseDeDatosHelper(this)
         val listaPersonas = baseDeDatosHelper.obtenerPersonas()
-
         val adaptador = PersonaAdaptador(listaPersonas)
 
         val rvPersonas: RecyclerView = findViewById(R.id.rv_personas)

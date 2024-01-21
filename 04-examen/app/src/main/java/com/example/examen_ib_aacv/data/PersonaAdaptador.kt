@@ -1,9 +1,11 @@
 package com.example.examen_ib_aacv.data
 
+import android.view.ContextMenu
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import com.example.examen_ib_aacv.R
 import com.example.examen_ib_aacv.data.entidades.Persona
@@ -11,9 +13,72 @@ import com.example.examen_ib_aacv.data.entidades.Persona
 class PersonaAdaptador(private val listaPersonas: List<Persona>) :
     RecyclerView.Adapter<PersonaAdaptador.PersonaViewHolder>() {
 
-    class PersonaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    // En tu adaptador
+    class PersonaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
+        View.OnCreateContextMenuListener {
         val nombre: TextView = itemView.findViewById(R.id.tv_nombre)
         val id: TextView = itemView.findViewById(R.id.tv_id)
+
+        init {
+            itemView.setOnCreateContextMenuListener(this)
+        }
+
+        override fun onCreateContextMenu(
+            menu: ContextMenu?,
+            v: View?,
+            menuInfo: ContextMenu.ContextMenuInfo?
+        ) {
+
+            val editarItem = menu!!.add(
+                this.adapterPosition,
+                121,
+                0,
+                "Editar"
+            )
+            editarItem.setOnMenuItemClickListener {
+                true
+            }
+
+            val eliminarItem = menu.add(
+                this.adapterPosition,
+                122,
+                1,
+                "Eliminar"
+            )
+            eliminarItem.setOnMenuItemClickListener {
+                abrirDialogoEliminar()
+                true
+            }
+        }
+
+        fun abrirDialogoEliminar() {
+            try {
+                val builder = AlertDialog.Builder(itemView.context)
+                builder.setTitle("Eliminar")
+                builder.setMessage("¿Está seguro que desea eliminar a ${nombre.text}?")
+                builder.setPositiveButton("Aceptar") { dialog, which ->
+                    BaseDeDatos.tablasBDD!!.eliminarPersona(id.text.toString().toInt())
+                }
+                builder.setNegativeButton("Cancelar", null)
+                val dialog: AlertDialog = builder.create()
+                dialog.show()
+
+            } catch (e: Exception) {
+                mostrarSnackbar("Se produjo un error al eliminar la persona ${id.text}")
+            }
+
+        }
+
+        fun mostrarSnackbar(texto: String) {
+            com.google.android.material.snackbar.Snackbar
+                .make(
+                    itemView, // Parent view
+                    texto, //texto
+                    com.google.android.material.snackbar.Snackbar.LENGTH_INDEFINITE //tiempo
+                )
+                .show()
+        }
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PersonaViewHolder {
@@ -30,4 +95,6 @@ class PersonaAdaptador(private val listaPersonas: List<Persona>) :
     }
 
     override fun getItemCount() = listaPersonas.size
+
+
 }
