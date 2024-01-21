@@ -20,6 +20,7 @@
 
 
         <TextView
+            android:id="@+id/tv_titulo_tarea"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
             android:layout_marginStart="20dp"
@@ -69,7 +70,7 @@
 
                     <!-- Nombre -->
                     <EditText
-                        android:id="@+id/editTextNombre"
+                        android:id="@+id/edtxt_nombre_tarea"
                         android:layout_width="match_parent"
                         android:layout_height="48dp"
                         android:hint="Nombre Tarea"
@@ -78,7 +79,7 @@
 
                     <!-- ID persona -->
                     <EditText
-                        android:id="@+id/editTextIdPersona"
+                        android:id="@+id/edtxt_id_persona_tarea"
                         android:layout_width="match_parent"
                         android:layout_height="48dp"
                         android:hint="Id Persona"
@@ -87,7 +88,7 @@
 
                     <!-- Descripción -->
                     <EditText
-                        android:id="@+id/editTextDescripcion"
+                        android:id="@+id/edtxt_descripcion_tarea"
                         android:layout_width="match_parent"
                         android:layout_height="48dp"
                         android:layout_marginTop="8dp"
@@ -95,7 +96,7 @@
                         android:textSize="16sp" />
 
                     <Button
-                        android:id="@+id/btnGuardar"
+                        android:id="@+id/btn_guardar_tarea"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"

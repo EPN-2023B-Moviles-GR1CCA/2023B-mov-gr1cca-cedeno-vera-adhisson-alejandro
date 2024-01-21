@@ -2,12 +2,18 @@ package com.example.examen_ib_aacv.app
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.examen_ib_aacv.CrearTareaFragment
 import com.example.examen_ib_aacv.R
+import com.example.examen_ib_aacv.data.BaseDeDatosHelper
+import com.example.examen_ib_aacv.data.TareaAdaptador
 import com.example.examen_ib_aacv.layout.MyToolbar
 import com.getbase.floatingactionbutton.FloatingActionButton
 
 class TareaActivity : AppCompatActivity() {
+
+    lateinit var adaptador: TareaAdaptador
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tarea)
@@ -22,7 +28,24 @@ class TareaActivity : AppCompatActivity() {
                 .replace(android.R.id.content, fragment)
                 .addToBackStack(null)
                 .commit()
+            actualizarRecyclerView()
+
         }
 
+        val baseDeDatosHelper = BaseDeDatosHelper(this)
+        val listaTareas = baseDeDatosHelper.obtenerTareas()
+        adaptador = TareaAdaptador(listaTareas)
+
+        val rvTareas: RecyclerView = findViewById(R.id.rv_tareas)
+        rvTareas.layoutManager = LinearLayoutManager(this)
+        rvTareas.adapter = adaptador
+
+    }
+
+    fun actualizarRecyclerView() {
+        val baseDeDatosHelper = BaseDeDatosHelper(this)
+        val listaTareas = baseDeDatosHelper.obtenerTareas()
+        adaptador = TareaAdaptador(listaTareas)
+        adaptador.notifyDataSetChanged()
     }
 }

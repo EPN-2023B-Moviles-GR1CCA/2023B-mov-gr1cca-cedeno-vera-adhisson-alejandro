@@ -12,7 +12,6 @@ import com.example.examen_ib_aacv.CrearPersonaFragment
 import com.example.examen_ib_aacv.R
 import com.example.examen_ib_aacv.app.PersonaActivity
 import com.example.examen_ib_aacv.data.entidades.Persona
-import com.getbase.floatingactionbutton.FloatingActionButton
 
 
 class PersonaAdaptador(private val listaPersonas: List<Persona>) :
@@ -21,8 +20,8 @@ class PersonaAdaptador(private val listaPersonas: List<Persona>) :
     // En tu adaptador
     class PersonaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
         View.OnCreateContextMenuListener {
-        val nombre: TextView = itemView.findViewById(R.id.tv_nombre)
-        val id: TextView = itemView.findViewById(R.id.tv_id)
+        val nombre: TextView = itemView.findViewById(R.id.tv_nombre_persona)
+        val id: TextView = itemView.findViewById(R.id.tv_id_persona)
 
         init {
             itemView.setOnCreateContextMenuListener(this)
@@ -90,7 +89,7 @@ class PersonaAdaptador(private val listaPersonas: List<Persona>) :
         fun editarPersona() {
             val fragmento = CrearPersonaFragment()
             val activity = itemView.context as PersonaActivity
-            val bundle = Bundle()
+            val bundle = Bundle() // sirve para pasar datos entre fragmentos y actividades
             bundle.putInt("id", id.text.toString().toInt())
             bundle.putString("nombrePersona", nombre.text.toString())
             fragmento.arguments = bundle

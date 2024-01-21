@@ -5,6 +5,7 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import com.example.examen_ib_aacv.data.entidades.Persona
+import com.example.examen_ib_aacv.data.entidades.Tarea
 
 class BaseDeDatosHelper(
     contexto: Context?, // this
@@ -94,6 +95,75 @@ class BaseDeDatosHelper(
                 "id_persona=?",
                 arrayOf(
                     id.toString()
+                )
+            )
+        conexionEscritura.close()
+        return resultadoActualizacion.toInt() != -1
+    }
+
+    fun crearTarea(idPersona: Int, nombre: String, descripcion: String): Boolean {
+        val conexionEscritura = writableDatabase
+        val valoresAGuardar = ContentValues()
+        valoresAGuardar.put("id_Persona", idPersona)
+        valoresAGuardar.put("nombre_tarea", nombre)
+        valoresAGuardar.put("descripcion_tarea", descripcion)
+        val resultadoEscritura = conexionEscritura
+            .insert(
+                "TAREA",
+                null,
+                valoresAGuardar
+            )
+        conexionEscritura.close()
+        return resultadoEscritura.toInt() != -1
+    }
+
+    fun eliminarTarea(id: Int): Boolean {
+        val conexionEscritura = writableDatabase
+        val resultadoEscritura = conexionEscritura
+            .delete(
+                "TAREA",
+                "id_tarea=?",
+                arrayOf(
+                    id.toString()
+                )
+            )
+        conexionEscritura.close()
+        return resultadoEscritura.toInt() != -1
+    }
+
+    fun obtenerTareas(): List<Tarea> {
+        val listaTareas = mutableListOf<Tarea>()
+        val conexionLectura = readableDatabase
+        val resultadoLectura =
+            conexionLectura.rawQuery("SELECT * FROM TAREA", null)
+        if (resultadoLectura.moveToFirst()) {
+            do {
+                val id = resultadoLectura.getInt(0) // Columna 0 -> ID
+                val idPersona = resultadoLectura.getInt(1) // Columna 1 -> ID_PERSONA
+                val nombre = resultadoLectura.getString(2) // Columna 2 -> NOMBRE
+                val descripcion = resultadoLectura.getString(3) // Columna 3 -> DESCRIPCION
+                val tarea = Tarea(id, idPersona, nombre, descripcion)
+                listaTareas.add(tarea)
+            } while (resultadoLectura.moveToNext())
+        }
+        resultadoLectura.close()
+        conexionLectura.close()
+        return listaTareas
+    }
+
+    fun actualizarTarea(idTarea: Int, idPersona: Int, nuevoNombre: String, nuevaDescripcion: String): Boolean {
+        val conexionEscritura = writableDatabase
+        val valoresAActualizar = ContentValues()
+        valoresAActualizar.put("nombre_tarea", nuevoNombre)
+        valoresAActualizar.put("id_Persona", idPersona)
+        valoresAActualizar.put("descripcion_tarea", nuevaDescripcion)
+        val resultadoActualizacion = conexionEscritura
+            .update(
+                "TAREA",
+                valoresAActualizar,
+                "id_tarea=?",
+                arrayOf(
+                    idTarea.toString()
                 )
             )
         conexionEscritura.close()

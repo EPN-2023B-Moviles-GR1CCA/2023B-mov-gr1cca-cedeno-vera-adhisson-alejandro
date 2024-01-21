@@ -27,7 +27,7 @@
             android:padding="16dp">
 
             <TextView
-                android:id="@+id/tv_nombre"
+                android:id="@+id/tv_nombre_persona"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Nombre"
@@ -35,7 +35,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/tv_id"
+                android:id="@+id/tv_id_persona"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
