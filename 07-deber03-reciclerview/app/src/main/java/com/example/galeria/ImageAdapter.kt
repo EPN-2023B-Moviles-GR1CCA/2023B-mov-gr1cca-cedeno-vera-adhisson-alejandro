@@ -2,6 +2,8 @@ package com.example.galeria
 
 import android.content.Context
 import android.content.Intent
+import android.database.Cursor
+import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,10 +13,10 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import java.io.File
 
-class ImageAdapter(private var context: Context, private var imagesList: ArrayList<Image>) :
+class ImageAdapter(private val context: Context, private var cursor: Cursor?) :
     RecyclerView.Adapter<ImageAdapter.ImageViewHolder>() {
 
-    class ImageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class ImageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var image: ImageView? = null
 
         init {
@@ -29,23 +31,29 @@ class ImageAdapter(private var context: Context, private var imagesList: ArrayLi
     }
 
     override fun onBindViewHolder(holder: ImageViewHolder, position: Int) {
-        val currentImage = imagesList[position]
-        Glide.with(context)
-            .load(currentImage.imagePath)
-            .apply(RequestOptions().centerCrop())
-            .into(holder.image!!)
+        if (cursor?.moveToPosition(position) == true) {
+            val imagePath =
+                cursor?.getString(cursor?.getColumnIndexOrThrow(MediaStore.Images.Media.DATA) ?: 0)
+            Glide.with(context)
+                .load(File(imagePath))
+                .apply(RequestOptions().centerCrop())
+                .into(holder.image!!)
 
-        holder.image!!.setOnClickListener {
-            val intent = Intent(context, ImageFullActivity::class.java)
-            intent.putExtra("imagePath", currentImage.imagePath)
-            intent.putExtra("imageName", currentImage.imageName)
-            context.startActivity(intent)
+            holder.image!!.setOnClickListener {
+                val intent = Intent(context, ImageFullActivity::class.java)
+                intent.putExtra("imagePath", imagePath)
+                context.startActivity(intent)
+            }
         }
-
     }
 
     override fun getItemCount(): Int {
-        return imagesList.size
+        return cursor?.count ?: 0
     }
 
+    fun swapCursor(newCursor: Cursor?) {
+        cursor?.close()
+        cursor = newCursor
+        notifyDataSetChanged()
+    }
 }
