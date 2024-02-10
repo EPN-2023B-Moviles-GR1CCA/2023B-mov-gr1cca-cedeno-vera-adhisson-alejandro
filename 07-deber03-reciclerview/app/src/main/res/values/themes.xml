@@ -7,4 +7,8 @@
          <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="BottomNavigationView.Active" parent="TextAppearance.AppCompat">
+        <item name="android:textStyle">bold</item>
+    </style>
+
 </resources>

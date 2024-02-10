@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
         imageRecycler = findViewById(R.id.image_recycler)
         progressBar = findViewById(R.id.recycler_progress)
 
-        imageRecycler?.layoutManager = GridLayoutManager(this, 3)
+        imageRecycler?.layoutManager = GridLayoutManager(this, 4) // tamaño de las imágenes
         imageRecycler?.setHasFixedSize(true)
 
         /*
