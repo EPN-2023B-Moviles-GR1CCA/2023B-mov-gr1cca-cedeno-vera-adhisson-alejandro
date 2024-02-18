@@ -5,16 +5,12 @@
         android:id="@+id/action_images"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:title="Imágenes" />
+        android:title="Fotos"
+        android:icon="@drawable/photo_icon" />
     <item
         android:id="@+id/action_albums"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:title="Álbumes" />
-    <item
-        android:id="@+id/action_stories"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:checkable="false"
-        android:title="Historias" />
+        android:title="Carpetas"
+        android:icon="@drawable/folder_icon" />
 </menu>

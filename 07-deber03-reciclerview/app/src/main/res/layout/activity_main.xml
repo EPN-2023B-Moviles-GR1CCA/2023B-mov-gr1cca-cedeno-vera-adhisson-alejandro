@@ -35,6 +35,7 @@
         android:background="?android:attr/windowBackground"
         android:layout_gravity="center_vertical"
         android:gravity="center"
+        app:itemIconTint="@animator/icon_color"
         app:itemTextAppearanceActive="@style/BottomNavigationView.Active"
         app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"

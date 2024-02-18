@@ -2,13 +2,15 @@
     <!-- Base application theme. -->
     <style name="galleryTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your light theme here. -->
-         <item name="colorPrimary">@color/colorPrimary</item>
-         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+         <item name="colorPrimary">@color/ic_launcher_background</item>
+         <item name="colorPrimaryDark">@color/transparent</item>
          <item name="colorAccent">@color/colorAccent</item>
+        <item name="logo">@mipmap/ic_launcher</item>
     </style>
 
     <style name="BottomNavigationView.Active" parent="TextAppearance.AppCompat">
         <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/colorPrimary</item>
     </style>
 
 </resources>
